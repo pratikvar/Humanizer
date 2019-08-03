@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.skybase.humanizer.DateHumanizer" />
+
+        <variable
+            name="value"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".DateHumanizerActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="12dp">
+
+            <LinearLayout
+                android:id="@+id/layout_date_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/tv_date_selection"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_calendar"
+                    android:drawablePadding="6dp"
+                    android:padding="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_time_selection"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_clock"
+                    android:drawablePadding="6dp"
+                    android:padding="8dp" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/layout_date_time"
+                android:layout_marginTop="4dp"
+                android:background="@android:color/black" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/divider">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!--TYPE_PRETTY_EVERYTHING-->
+                    <TextView
+                        android:id="@+id/tv_title_pretty_everything"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TYPE_PRETTY_EVERYTHING" />
+
+                    <TextView
+                        android:id="@+id/tv_pretty_everything"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_PRETTY_EVERYTHING)}"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!--TYPE_PRETTY_TODAY-->
+                    <TextView
+                        android:id="@+id/tv_title_type_pretty_today"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TYPE_PRETTY_TODAY" />
+
+                    <TextView
+                        android:id="@+id/tv_type_pretty_today"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_PRETTY_TODAY)}"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!--TYPE_DD_MMM_YYYY -->
+                    <TextView
+                        android:id="@+id/tv_title_type_dd_mmm_yyyy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TYPE_DD_MMM_YYYY " />
+
+                    <TextView
+                        android:id="@+id/tv_type_dd_mmm_yyyy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_DD_MMM_YYYY )}"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!--TYPE_EEE_DD_MMM_YYYY-->
+                    <TextView
+                        android:id="@+id/tv_title_type_eee_dd_mmm_yyyy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TYPE_EEE_DD_MMM_YYYY" />
+
+                    <TextView
+                        android:id="@+id/tv_type_eee_dd_mmm_yyyy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_EEE_DD_MMM_YYYY)}"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!--TYPE_DD_MM_YYYY-->
+                    <TextView
+                        android:id="@+id/tv_title_type_dd_mm_yyyy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TYPE_DD_MM_YYYY" />
+
+                    <TextView
+                        android:id="@+id/tv_type_dd_mm_yyyy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_DD_MM_YYYY)}"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!--TYPE_DD_MMM-->
+                    <TextView
+                        android:id="@+id/tv_title_type_dd_mmm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TYPE_DD_MMM" />
+
+                    <TextView
+                        android:id="@+id/tv_type_dd_mmm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_DD_MMM)}"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!--TYPE_DATE_DISABLE-->
+                    <TextView
+                        android:id="@+id/tv_title_type_date_disable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TYPE_DATE_DISABLE" />
+
+                    <TextView
+                        android:id="@+id/tv_type_date_disable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_DATE_DISABLE)}"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@android:color/darker_gray" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Time Can Be Combine with any above date format" />
+
+                    <!--TYPE_TIME_HH_MM -->
+                    <TextView
+                        android:id="@+id/tv_title_type_time_hh_mm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TYPE_TIME_HH_MM" />
+
+                    <TextView
+                        android:id="@+id/tv_type_time_hh_mm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_DD_MMM_YYYY,DateHumanizer.TYPE_TIME_HH_MM)}"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!--TYPE_TIME_HH_MM_A-->
+                    <TextView
+                        android:id="@+id/tv_title_type_time_hh_mm_a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TYPE_TIME_HH_MM_A" />
+
+                    <TextView
+                        android:id="@+id/tv_type_time_hh_mm_a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_DD_MMM_YYYY,DateHumanizer.TYPE_TIME_HH_MM_A)}"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!--TYPE_TIME_DISABLE-->
+                    <TextView
+                        android:id="@+id/tv_title_type_time_disable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TYPE_TIME_DISABLE" />
+
+                    <TextView
+                        android:id="@+id/tv_type_time_disable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_DD_MMM_YYYY,DateHumanizer.TYPE_TIME_DISABLE)}"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
