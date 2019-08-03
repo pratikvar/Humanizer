@@ -1,152 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    <data>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onDateClick"
+        android:text="Date Humanizer" />
 
-        <import type="com.skybase.humanizer.DateHumanizer" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onTextClick"
+        android:text="Text Humanizer" />
 
-        <variable
-            name="value"
-            type="String" />
-
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="12dp">
-
-            <LinearLayout
-                android:id="@+id/layout_date_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2">
-
-                <TextView
-                    android:id="@+id/tv_date_selection"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableStart="@drawable/ic_calendar"
-                    android:padding="8dp" />
-
-                <TextView
-                    android:id="@+id/tv_time_selection"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableStart="@drawable/ic_clock"
-                    android:padding="8dp" />
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/layout_date_time"
-                android:layout_marginTop="4dp"
-                android:background="@android:color/black" />
-
-            <LinearLayout
-                android:layout_below="@id/divider"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <!--TYPE_PRETTY_EVERYTHING-->
-                <TextView
-                    android:id="@+id/tv_title_pretty_everything"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_PRETTY_EVERYTHING)}"
-                    android:id="@+id/tv_pretty_everything"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <!--TYPE_PRETTY_TODAY-->
-                <TextView
-                    android:id="@+id/tv_title_type_pretty_today"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_PRETTY_TODAY)}"
-                    android:id="@+id/tv_type_pretty_today"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <!--TYPE_DD_MMM_YYYY -->
-                <TextView
-                    android:id="@+id/tv_title_type_dd_mmm_yyyy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_DD_MMM_YYYY )}"
-                    android:id="@+id/tv_type_dd_mmm_yyyy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <!--TYPE_EEE_DD_MMM_YYYY-->
-                <TextView
-                    android:id="@+id/tv_title_type_eee_dd_mmm_yyyy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_EEE_DD_MMM_YYYY)}"
-                    android:id="@+id/tv_type_eee_dd_mmm_yyyy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <!--TYPE_DD_MM_YYYY-->
-                <TextView
-                    android:id="@+id/tv_title_type_dd_mm_yyyy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_DD_MM_YYYY)}"
-                    android:id="@+id/tv_type_dd_mm_yyyy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <!--TYPE_DD_MMM-->
-                <TextView
-                    android:id="@+id/tv_title_type_dd_mmm"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_DD_MMM)}"
-                    android:id="@+id/tv_type_dd_mmm"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <!--TYPE_DATE_DISABLE-->
-                <TextView
-                    android:id="@+id/tv_title_type_date_disable"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:text="@{DateHumanizer.humanize(value,DateHumanizer.TYPE_DATE_DISABLE)}"
-                    android:id="@+id/tv_type_date_disable"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-        </RelativeLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</layout>
+</LinearLayout>
