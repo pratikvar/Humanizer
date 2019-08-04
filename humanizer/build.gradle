@@ -22,9 +22,29 @@ android {
     }
 
 }
+ext {
+    bintrayRepo = 'Humanizer' // your repo name
+    bintrayName = 'humanizer' // has to be same as your library module name
+    publishedGroupId = 'com.skybase.humanizer' // your module package name
+    libraryName = "Humanizer"
+    artifact = 'humanizer' // has to be same as your library module name
+    libraryDescription = 'Humanizer allow you to display data in human readable format for simplicity.'
+    siteUrl = 'https://github.com/pratikvar/Humanizer'
+    gitUrl = 'https://github.com/pratikvar/Humanizer.git'
+    libraryVersion = '1.0'
+    developerId = "pratikvar"
+    developerName = "Pratik Vartak"
+    developerEmail = 'pratik.vartak25@gmail.com'
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
 }
+
+apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/installv.gradle'
+apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/bintrayv.gradle'
