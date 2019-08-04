@@ -24,6 +24,7 @@ public class TextHumanizer {
      *
      * @param humanizerValue String value to convert in human Readable format.
      * @param flag           Type Flag which specify how string should be formatted.
+     * @return Humanized String
      */
     public static String humanize(String humanizerValue, @HumanizerTextTypes int flag) {
         try {
@@ -46,6 +47,7 @@ public class TextHumanizer {
      * Equivalent to {@link TextHumanizer#humanize(String, int)} with default flag as {@link TextHumanizer#SENTENCE}
      *
      * @param humanizerValue String value to convert in human Readable format.
+     * @return Humanized String
      */
     public static String humanize(String humanizerValue) {
         return humanize(humanizerValue, SENTENCE);
@@ -109,6 +111,9 @@ public class TextHumanizer {
 
     /**
      * Remove First Occurrence and prefix text from String
+     * @param title value for removing title
+     * @param parentTitle parent title value
+     * @return humanized string with TITLE
      */
     public static String humanizeTitleForParent(String title, String parentTitle) {
         try {
