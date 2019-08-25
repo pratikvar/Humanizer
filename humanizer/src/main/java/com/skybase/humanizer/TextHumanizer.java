@@ -1,6 +1,6 @@
 package com.skybase.humanizer;
 
-import androidx.annotation.IntDef;
+import com.skybase.humanizer.helper.HumanizeIntDef;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -111,7 +111,8 @@ public class TextHumanizer {
 
     /**
      * Remove First Occurrence and prefix text from String
-     * @param title value for removing title
+     *
+     * @param title       value for removing title
      * @param parentTitle parent title value
      * @return humanized string with TITLE
      */
@@ -154,7 +155,7 @@ public class TextHumanizer {
     }
 
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({TITLE_CAPS, TITLE, SENTENCE})
+    @HumanizeIntDef({TITLE_CAPS, TITLE, SENTENCE})
     private @interface HumanizerTextTypes {
     }
 }

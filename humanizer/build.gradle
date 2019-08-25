@@ -31,7 +31,7 @@ ext {
     libraryDescription = 'Humanizer allow you to display data in human readable format for simplicity.'
     siteUrl = 'https://github.com/pratikvar/Humanizer'
     gitUrl = 'https://github.com/pratikvar/Humanizer.git'
-    libraryVersion = '1.0'
+    libraryVersion = '1.0.2'
     developerId = "pratikvar"
     developerName = "Pratik Vartak"
     developerEmail = 'pratik.vartak25@gmail.com'
@@ -42,8 +42,6 @@ ext {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'androidx.appcompat:appcompat:1.0.2'
 }
 
 apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/installv.gradle'

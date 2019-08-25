@@ -2,20 +2,21 @@ package com.skybase.humanizer;
 
 import android.annotation.SuppressLint;
 
-import androidx.annotation.IntDef;
-
 import com.skybase.humanizer.helper.DateFormats;
+import com.skybase.humanizer.helper.HumanizeIntDef;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
-
 
 @SuppressLint("SimpleDateFormat")
 public class DateHumanizer {
+
+    //<editor-fold desc="Final Types">
     /**
      * This Type Return String associate with given date as Today, #Something# ago.
      * This type ignore timeFlag
@@ -61,7 +62,158 @@ public class DateHumanizer {
      * This Type define time in HH-MM-A format.
      */
     public static final int TYPE_TIME_DISABLE = 451;
+    //</editor-fold>
 
+    //<editor-fold desc="Long">
+
+    /**
+     * Method return Humanized String for given dateValueInMillis by using given date and time flag.
+     *
+     * @param dateValueInMillis dateValue in milliseconds,
+     *                          <br/> which is the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
+     *                          <br/> You can use {@link System#currentTimeMillis()} to get current date and time in millis.
+     *                          <br/>
+     * @param dateFlag          type which determine how your date will be formatted while humanizing value.
+     *                          <p>
+     *                          <br/>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}
+     *                          <br/>
+     * @param timeFlag          type which determine how your time will be formatted while humanizing value.
+     *                          <p>
+     *                          <br/>Common type used is {@link #TYPE_TIME_HH_MM_A}
+     *                          <br/>
+     * @return Humanize Representation of given date and time in millis.
+     * @author Pratik Kishor Vartak
+     * @see #humanize(Date, int, int)
+     * @see #humanize(String, int, int)
+     * @since 1.0.2
+     */
+    public static String humanize(Long dateValueInMillis, @HumanizerTypeDate int dateFlag, @HumanizerTypeTime int timeFlag) {
+        Calendar humanizeCal = Calendar.getInstance();
+        humanizeCal.setTimeInMillis(dateValueInMillis);
+        return humanize(humanizeCal.getTime(), dateFlag, timeFlag);
+    }
+
+    /**
+     * Method return Humanized String for given dateValueInMillis by using given date flag and using default time flag,<br/>
+     * Which is {@link com.skybase.humanizer.DateHumanizer#TYPE_TIME_DISABLE TYPE_TIME_DISABLE}
+     *
+     * @param dateValueInMillis dateValue in milliseconds,
+     *                          <br/> which is the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
+     *                          <br/> You can use {@link System#currentTimeMillis()} to get current date and time in millis.
+     * @param dateFlag          type which determine how your date will be formatted while humanizing value.
+     *                          <p>
+     *                          <br/>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}
+     *                          </br>Equivalent to {@link #humanize(Long, int, int) with #TYPE_TIME_DISABLE as timeFlag}
+     * @return Humanize Representation of given date and time in millis.
+     * @author Pratik Kishor Vartak
+     * @see #humanize(Date, int, int)
+     * @see #humanize(String, int, int)
+     * @since 1.0.2
+     */
+    public static String humanize(Long dateValueInMillis, @HumanizerTypeDate int dateFlag) {
+        Calendar humanizeCal = Calendar.getInstance();
+        humanizeCal.setTimeInMillis(dateValueInMillis);
+        return humanize(humanizeCal.getTime(), dateFlag);
+    }
+
+    /**
+     * Method return Humanized String for given dateValueInMillis by using default date and time flag,
+     * <br/> which are {@link com.skybase.humanizer.DateHumanizer#TYPE_DD_MMM_YYYY TYPE_DD_MMM_YYYY}
+     * and {@link com.skybase.humanizer.DateHumanizer#TYPE_TIME_DISABLE TYPE_TIME_DISABLE}.
+     *
+     * @param dateValueInMillis dateValue in milliseconds,
+     *                          <br/> which is the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
+     *                          <br/> You can use {@link System#currentTimeMillis()} to get current date and time in millis.
+     * @return Humanize Representation of given date and time in millis.
+     * @author Pratik Kishor Vartak
+     * @see #humanize(Date)
+     * @see #humanize(String)
+     * @since 1.0.2
+     */
+    public static String humanize(Long dateValueInMillis) {
+        Calendar humanizeCal = Calendar.getInstance();
+        humanizeCal.setTimeInMillis(dateValueInMillis);
+        return humanize(humanizeCal.getTime());
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Date">
+
+    /**
+     * Method return Humanized String for given dateValueInMillis by using given date and time flag.
+     *
+     * @param dateValue dateValue as {@link Date} Object
+     * @param dateFlag  type which determine how your date will be formatted while humanizing value.
+     *                  <br/>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}.
+     *                  <p>
+     * @param timeFlag  type which determine how your time will be formatted while humanizing value.
+     *                  <br/>Common type used is {@link #TYPE_TIME_HH_MM_A}.
+     *                  <p>
+     * @return Humanize Representation of given date and time.
+     * @author Pratik Kishor Vartak
+     * @see #humanize(Long, int, int)
+     * @see #humanize(String, int, int)
+     * @since 1.0.2
+     */
+    public static String humanize(Date dateValue, @HumanizerTypeDate int dateFlag, @HumanizerTypeTime int timeFlag) {
+        return humanize(new SimpleDateFormat(DateFormats.ISO_FORMAT).format(dateValue), dateFlag, timeFlag);
+    }
+
+    /**
+     * Method return Humanized String for given dateValueInMillis by using given date and and using default time flag,<br/>
+     * Which is {@link com.skybase.humanizer.DateHumanizer#TYPE_TIME_DISABLE TYPE_TIME_DISABLE}
+     *
+     * @param dateValue dateValue as {@link Date} Object
+     * @param dateFlag  type which determine how your date will be formatted while humanizing value.
+     *                  <br/>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}.
+     *                  <p>
+     *                  </br>Equivalent to {@link #humanize(Date, int, int)} with {@link #TYPE_TIME_DISABLE} as timeFlag.
+     *                  <p>
+     * @return Humanize Representation of given date and time.
+     * @author Pratik Kishor Vartak
+     * @see #humanize(Long, int, int)
+     * @see #humanize(String, int, int)
+     * @since 1.0.2
+     */
+    public static String humanize(Date dateValue, @HumanizerTypeDate int dateFlag) {
+        return humanize(new SimpleDateFormat(DateFormats.ISO_FORMAT).format(dateValue), dateFlag);
+    }
+
+    /**
+     * Method return Humanized String for given dateValueInMillis by using default date and time flag,
+     * <br/> which are {@link com.skybase.humanizer.DateHumanizer#TYPE_DD_MMM_YYYY TYPE_DD_MMM_YYYY}
+     * and {@link com.skybase.humanizer.DateHumanizer#TYPE_TIME_DISABLE TYPE_TIME_DISABLE}.
+     *
+     * @param dateValue dateValue as {@link Date} Object.
+     * @return Humanize Representation of given date and time.
+     * @author Pratik Kishor Vartak
+     * @see #humanize(Long)
+     * @see #humanize(String)
+     * @since 1.0.2
+     */
+    public static String humanize(Date dateValue) {
+        return humanize(new SimpleDateFormat(DateFormats.ISO_FORMAT).format(dateValue));
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="ISO_FORMATTED String">
+
+    /**
+     * Method return Humanized String for given dateValueInMillis by using given date and time flag.
+     *
+     * @param dateValue date and time formatted as String using {@link DateFormats#ISO_FORMAT} only.
+     * @param dateFlag  type which determine how your date will be formatted while humanizing value.
+     *                  <br/>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}.
+     *                  <p>
+     * @param timeFlag  type which determine how your time will be formatted while humanizing value.
+     *                  <br/>Common type used is {@link #TYPE_TIME_HH_MM_A}.
+     *                  <p>
+     * @return Humanize Representation of given date and time.
+     * @author Pratik Kishor Vartak
+     * @see #humanize(Long, int, int)
+     * @see #humanize(Date, int, int)
+     * @since 1.0.0
+     */
     public static String humanize(String dateValue, @HumanizerTypeDate int dateFlag, @HumanizerTypeTime int timeFlag) {
         if (dateValue == null) {
             return "";
@@ -93,14 +245,43 @@ public class DateHumanizer {
         return "";
     }
 
+    /**
+     * Method return Humanized String for given dateValueInMillis by using given date and and using default time flag,<br/>
+     * Which is {@link com.skybase.humanizer.DateHumanizer#TYPE_TIME_DISABLE TYPE_TIME_DISABLE}.
+     *
+     * @param dateValue date and time formatted as String using {@link DateFormats#ISO_FORMAT} only.
+     * @param dateFlag  type which determine how your date will be formatted while humanizing value.
+     *                  <br/>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}.
+     *                  </br>Equivalent to {@link #humanize(String, int, int)} with {@link #TYPE_TIME_DISABLE} as timeFlag.
+     *                  <p>
+     * @return Humanize Representation of given date and time.
+     * @author Pratik Kishor Vartak
+     * @see #humanize(Long, int, int)
+     * @see #humanize(Date, int, int)
+     * @since 1.0.0
+     */
     public static String humanize(String dateValue, @HumanizerTypeDate int dateFlag) {
         return humanize(dateValue, dateFlag, TYPE_TIME_DISABLE);
     }
 
+    /**
+     * Method return Humanized String for given dateValueInMillis by using default date and time flag,
+     * <br/> which are {@link com.skybase.humanizer.DateHumanizer#TYPE_DD_MMM_YYYY TYPE_DD_MMM_YYYY}
+     * and {@link com.skybase.humanizer.DateHumanizer#TYPE_TIME_DISABLE TYPE_TIME_DISABLE}.
+     *
+     * @param dateValue date and time formatted as String using {@link DateFormats#ISO_FORMAT} only.
+     * @return Humanize Representation of given String.
+     * @author Pratik Kishor Vartak
+     * @see #humanize(Long)
+     * @see #humanize(Date)
+     * @since 1.0.0
+     */
     public static String humanize(String dateValue) {
         return humanize(dateValue, TYPE_DD_MMM_YYYY, TYPE_TIME_DISABLE);
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Private Implementations">
     private static String convertToDateLMonthYear(String dateValue, @HumanizerTypeTime int timeFlag) {
         String format = DateFormats.DATE_LMONTH_YEAR;
         switch (timeFlag) {
@@ -231,9 +412,9 @@ public class DateHumanizer {
         Calendar now = resetCalendarTime(Calendar.getInstance());
 
         long diffInMillis = dateCalender.getTimeInMillis() - now.getTimeInMillis();
-        Long dayDiff = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
+        long dayDiff = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
 
-        switch (dayDiff.intValue()) {
+        switch ((int) dayDiff) {
             case 0:
                 return "Today";
             case 1:
@@ -244,7 +425,7 @@ public class DateHumanizer {
             case 5:
             case 6:
             case 7:
-                return "In " + dayDiff.intValue() + " days";
+                return "In " + (int) dayDiff + " days";
             case -1:
                 return "Yesterday";
             case -2:
@@ -253,9 +434,9 @@ public class DateHumanizer {
             case -5:
             case -6:
             case -7:
-                return (-dayDiff.intValue()) + " days ago";
+                return ((int) -dayDiff) + " days ago";
             default:
-                return getRelativeDateString(dayDiff.intValue(), dateValue);
+                return getRelativeDateString((int) dayDiff, dateValue);
         }
     }
 
@@ -346,14 +527,17 @@ public class DateHumanizer {
             return Calendar.getInstance();
         }
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Type Def interfaces">
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({TYPE_PRETTY_EVERYTHING, TYPE_PRETTY_TODAY, TYPE_DD_MMM_YYYY, TYPE_DD_MM_YYYY, TYPE_DD_MMM, TYPE_DATE_DISABLE, TYPE_EEE_DD_MMM_YYYY})
+    @HumanizeIntDef({TYPE_PRETTY_EVERYTHING, TYPE_PRETTY_TODAY, TYPE_DD_MMM_YYYY, TYPE_DD_MM_YYYY, TYPE_DD_MMM, TYPE_DATE_DISABLE, TYPE_EEE_DD_MMM_YYYY})
     private @interface HumanizerTypeDate {
     }
 
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({TYPE_TIME_HH_MM, TYPE_TIME_HH_MM_A, TYPE_TIME_DISABLE})
+    @HumanizeIntDef({TYPE_TIME_HH_MM, TYPE_TIME_HH_MM_A, TYPE_TIME_DISABLE})
     private @interface HumanizerTypeTime {
     }
+    //</editor-fold>
 }
