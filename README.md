@@ -1,14 +1,14 @@
 # Android Humanizer
 
-Humanizer allow you to display data in human readable format for simplicity.
+Humanizer allows you to display data in a human-readable format for simplicity.
 
 ## Features
 ### Humanize String
-Humanizer give a human readable touch to string (user input without proper formatting, system created, non formated)
+Humanizer give a human-readable touch to string (user input without proper formatting, system created, non-formatted)
 
 ### Humanize Date
-Humanizer can convert date object, date string as well as millis to human radable date and time format with multiple variations. 
-Using Pretty_Everything format you can show relevent date representation.
+Humanizer can convert date object, date string as well as millis to human readable date and time format with multiple variations. 
+Using Pretty_Everything format you can show relevant date representation.
 
 ## Getting Started
 ### Setting up the dependency
