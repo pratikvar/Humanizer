@@ -71,7 +71,7 @@ public class DateHumanizerActivity extends AppCompatActivity
         mSelectedCalendarTime.set(Calendar.DATE, dayOfMonth);
         mDatePickerDialog.dismiss();
         mBinding.tvDateSelection.setText(dayOfMonth + "/" + month + "/" + year);
-        mBinding.setValue(getISOFormattedDate(mSelectedCalendarTime.getTime()));
+        mBinding.setValue(mSelectedCalendarTime.getTimeInMillis());
     }
 
     @Override
@@ -80,7 +80,7 @@ public class DateHumanizerActivity extends AppCompatActivity
         mSelectedCalendarTime.set(Calendar.MINUTE, minute);
         mTimePickerDialog.dismiss();
         mBinding.tvTimeSelection.setText(hourOfDay + ":" + minute);
-        mBinding.setValue(getISOFormattedDate(mSelectedCalendarTime.getTime()));
+        mBinding.setValue(mSelectedCalendarTime.getTimeInMillis());
     }
 
     public String getISOFormattedDate(Date dateNonFormat) {

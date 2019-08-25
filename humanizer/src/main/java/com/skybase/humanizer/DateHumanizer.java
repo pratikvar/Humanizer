@@ -70,17 +70,17 @@ public class DateHumanizer {
      * Method return Humanized String for given dateValueInMillis by using given date and time flag.
      *
      * @param dateValueInMillis dateValue in milliseconds,
-     *                          <br/> which is the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
-     *                          <br/> You can use {@link System#currentTimeMillis()} to get current date and time in millis.
-     *                          <br/>
+     *                          <br> which is the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
+     *                          <br> You can use {@link System#currentTimeMillis()} to get current date and time in millis.
+     *                          <br>
      * @param dateFlag          type which determine how your date will be formatted while humanizing value.
      *                          <p>
-     *                          <br/>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}
-     *                          <br/>
+     *                          <br>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}
+     *                          <br>
      * @param timeFlag          type which determine how your time will be formatted while humanizing value.
      *                          <p>
-     *                          <br/>Common type used is {@link #TYPE_TIME_HH_MM_A}
-     *                          <br/>
+     *                          <br>Common type used is {@link #TYPE_TIME_HH_MM_A}
+     *                          <br>
      * @return Humanize Representation of given date and time in millis.
      * @author Pratik Kishor Vartak
      * @see #humanize(Date, int, int)
@@ -94,16 +94,16 @@ public class DateHumanizer {
     }
 
     /**
-     * Method return Humanized String for given dateValueInMillis by using given date flag and using default time flag,<br/>
+     * Method return Humanized String for given dateValueInMillis by using given date flag and using default time flag,<br>
      * Which is {@link com.skybase.humanizer.DateHumanizer#TYPE_TIME_DISABLE TYPE_TIME_DISABLE}
      *
      * @param dateValueInMillis dateValue in milliseconds,
-     *                          <br/> which is the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
-     *                          <br/> You can use {@link System#currentTimeMillis()} to get current date and time in millis.
+     *                          <br> which is the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
+     *                          <br> You can use {@link System#currentTimeMillis()} to get current date and time in millis.
      * @param dateFlag          type which determine how your date will be formatted while humanizing value.
      *                          <p>
-     *                          <br/>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}
-     *                          </br>Equivalent to {@link #humanize(Long, int, int) with #TYPE_TIME_DISABLE as timeFlag}
+     *                          <br>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}
+     *                          <br>Equivalent to {@link #humanize(Long, int, int) with #TYPE_TIME_DISABLE as timeFlag}
      * @return Humanize Representation of given date and time in millis.
      * @author Pratik Kishor Vartak
      * @see #humanize(Date, int, int)
@@ -118,12 +118,12 @@ public class DateHumanizer {
 
     /**
      * Method return Humanized String for given dateValueInMillis by using default date and time flag,
-     * <br/> which are {@link com.skybase.humanizer.DateHumanizer#TYPE_DD_MMM_YYYY TYPE_DD_MMM_YYYY}
+     * <br> which are {@link com.skybase.humanizer.DateHumanizer#TYPE_DD_MMM_YYYY TYPE_DD_MMM_YYYY}
      * and {@link com.skybase.humanizer.DateHumanizer#TYPE_TIME_DISABLE TYPE_TIME_DISABLE}.
      *
      * @param dateValueInMillis dateValue in milliseconds,
-     *                          <br/> which is the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
-     *                          <br/> You can use {@link System#currentTimeMillis()} to get current date and time in millis.
+     *                          <br> which is the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
+     *                          <br> You can use {@link System#currentTimeMillis()} to get current date and time in millis.
      * @return Humanize Representation of given date and time in millis.
      * @author Pratik Kishor Vartak
      * @see #humanize(Date)
@@ -144,10 +144,10 @@ public class DateHumanizer {
      *
      * @param dateValue dateValue as {@link Date} Object
      * @param dateFlag  type which determine how your date will be formatted while humanizing value.
-     *                  <br/>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}.
+     *                  <br>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}.
      *                  <p>
      * @param timeFlag  type which determine how your time will be formatted while humanizing value.
-     *                  <br/>Common type used is {@link #TYPE_TIME_HH_MM_A}.
+     *                  <br>Common type used is {@link #TYPE_TIME_HH_MM_A}.
      *                  <p>
      * @return Humanize Representation of given date and time.
      * @author Pratik Kishor Vartak
@@ -160,14 +160,14 @@ public class DateHumanizer {
     }
 
     /**
-     * Method return Humanized String for given dateValueInMillis by using given date and and using default time flag,<br/>
+     * Method return Humanized String for given dateValueInMillis by using given date and and using default time flag,<br>
      * Which is {@link com.skybase.humanizer.DateHumanizer#TYPE_TIME_DISABLE TYPE_TIME_DISABLE}
      *
      * @param dateValue dateValue as {@link Date} Object
      * @param dateFlag  type which determine how your date will be formatted while humanizing value.
-     *                  <br/>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}.
+     *                  <br>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}.
      *                  <p>
-     *                  </br>Equivalent to {@link #humanize(Date, int, int)} with {@link #TYPE_TIME_DISABLE} as timeFlag.
+     *                  <br>Equivalent to {@link #humanize(Date, int, int)} with {@link #TYPE_TIME_DISABLE} as timeFlag.
      *                  <p>
      * @return Humanize Representation of given date and time.
      * @author Pratik Kishor Vartak
@@ -181,7 +181,7 @@ public class DateHumanizer {
 
     /**
      * Method return Humanized String for given dateValueInMillis by using default date and time flag,
-     * <br/> which are {@link com.skybase.humanizer.DateHumanizer#TYPE_DD_MMM_YYYY TYPE_DD_MMM_YYYY}
+     * <br> which are {@link com.skybase.humanizer.DateHumanizer#TYPE_DD_MMM_YYYY TYPE_DD_MMM_YYYY}
      * and {@link com.skybase.humanizer.DateHumanizer#TYPE_TIME_DISABLE TYPE_TIME_DISABLE}.
      *
      * @param dateValue dateValue as {@link Date} Object.
@@ -203,10 +203,10 @@ public class DateHumanizer {
      *
      * @param dateValue date and time formatted as String using {@link DateFormats#ISO_FORMAT} only.
      * @param dateFlag  type which determine how your date will be formatted while humanizing value.
-     *                  <br/>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}.
+     *                  <br>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}.
      *                  <p>
      * @param timeFlag  type which determine how your time will be formatted while humanizing value.
-     *                  <br/>Common type used is {@link #TYPE_TIME_HH_MM_A}.
+     *                  <br>Common type used is {@link #TYPE_TIME_HH_MM_A}.
      *                  <p>
      * @return Humanize Representation of given date and time.
      * @author Pratik Kishor Vartak
@@ -246,13 +246,13 @@ public class DateHumanizer {
     }
 
     /**
-     * Method return Humanized String for given dateValueInMillis by using given date and and using default time flag,<br/>
+     * Method return Humanized String for given dateValueInMillis by using given date and and using default time flag,<br>
      * Which is {@link com.skybase.humanizer.DateHumanizer#TYPE_TIME_DISABLE TYPE_TIME_DISABLE}.
      *
      * @param dateValue date and time formatted as String using {@link DateFormats#ISO_FORMAT} only.
      * @param dateFlag  type which determine how your date will be formatted while humanizing value.
-     *                  <br/>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}.
-     *                  </br>Equivalent to {@link #humanize(String, int, int)} with {@link #TYPE_TIME_DISABLE} as timeFlag.
+     *                  <br>Common types used are {@link #TYPE_PRETTY_EVERYTHING} and {@link #TYPE_PRETTY_TODAY}.
+     *                  <br>Equivalent to {@link #humanize(String, int, int)} with {@link #TYPE_TIME_DISABLE} as timeFlag.
      *                  <p>
      * @return Humanize Representation of given date and time.
      * @author Pratik Kishor Vartak
@@ -266,7 +266,7 @@ public class DateHumanizer {
 
     /**
      * Method return Humanized String for given dateValueInMillis by using default date and time flag,
-     * <br/> which are {@link com.skybase.humanizer.DateHumanizer#TYPE_DD_MMM_YYYY TYPE_DD_MMM_YYYY}
+     * <br> which are {@link com.skybase.humanizer.DateHumanizer#TYPE_DD_MMM_YYYY TYPE_DD_MMM_YYYY}
      * and {@link com.skybase.humanizer.DateHumanizer#TYPE_TIME_DISABLE TYPE_TIME_DISABLE}.
      *
      * @param dateValue date and time formatted as String using {@link DateFormats#ISO_FORMAT} only.
