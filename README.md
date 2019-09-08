@@ -1,4 +1,5 @@
 # Android Humanizer
+[![](https://jitpack.io/v/pratikvar/Humanizer.svg)](https://jitpack.io/#pratikvar/Humanizer)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Humanizer-blue.svg?style=flat)](https://android-arsenal.com/details/1/7834)
 
 Humanizer allows you to display data in a human-readable format for simplicity.
