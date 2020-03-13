@@ -381,7 +381,7 @@ public class DateHumanizer {
 
             switch (period) {
                 case 0:
-                    return "Today";
+                    return getTodayRelativeTimeString(getStringISODateToCalenderObject(dateValue));
                 case 1:
                     return "Tomorrow";
                 case 2:
@@ -401,7 +401,7 @@ public class DateHumanizer {
                 case -7:
                     return (-period) + " days ago";
                 default:
-                    return convertToDateMonth(dateValue, timeFlag);
+                    return convertToDateLMonthYear(dateValue, timeFlag);
             }
         } else return convertToDateLMonthYear(dateValue, timeFlag);
     }
@@ -412,11 +412,11 @@ public class DateHumanizer {
         Calendar now = resetCalendarTime(Calendar.getInstance());
 
         long diffInMillis = dateCalender.getTimeInMillis() - now.getTimeInMillis();
-        long dayDiff = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
+        Long dayDiff = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
 
-        switch ((int) dayDiff) {
+        switch (dayDiff.intValue()) {
             case 0:
-                return "Today";
+                return getTodayRelativeTimeString(getStringISODateToCalenderObject(dateValue));
             case 1:
                 return "Tomorrow";
             case 2:
@@ -425,7 +425,7 @@ public class DateHumanizer {
             case 5:
             case 6:
             case 7:
-                return "In " + (int) dayDiff + " days";
+                return "In " + dayDiff.intValue() + " days";
             case -1:
                 return "Yesterday";
             case -2:
@@ -434,9 +434,28 @@ public class DateHumanizer {
             case -5:
             case -6:
             case -7:
-                return ((int) -dayDiff) + " days ago";
+                return (-dayDiff.intValue()) + " days ago";
             default:
-                return getRelativeDateString((int) dayDiff, dateValue);
+                return getRelativeDateString(dayDiff.intValue(), dateValue);
+        }
+    }
+
+    private static String getTodayRelativeTimeString(Calendar dateValue) {
+        Calendar now = Calendar.getInstance();
+        long mills = now.getTimeInMillis() - dateValue.getTimeInMillis();
+        long hours = mills / (1000 * 60 * 60);
+        long mins = (mills / (1000 * 60)) % 60;
+        if (hours >= 0 && mins >= 0) {
+            if (hours > 12) {
+                return "Today";
+            }
+            if (hours == 0) {
+                return mins == 0 ? "Just Now" : (mins == 1 ? (mins + " minute ago") : (mins + " minutes ago"));
+            } else {
+                return hours == 1 ? (hours + " hour ago") : (hours + " hours ago");
+            }
+        } else {
+            return "Today";
         }
     }
 
