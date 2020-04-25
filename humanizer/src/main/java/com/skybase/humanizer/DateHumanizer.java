@@ -383,23 +383,23 @@ public class DateHumanizer {
                 case 0:
                     return getTodayRelativeTimeString(getStringISODateToCalenderObject(dateValue));
                 case 1:
-                    return "Tomorrow";
+                    return DateFormats.TOMORROW;
                 case 2:
                 case 3:
                 case 4:
                 case 5:
                 case 6:
                 case 7:
-                    return "In " + period + " days";
+                    return String.format(DateFormats.IN_X_DAYS, String.valueOf(period));
                 case -1:
-                    return "Yesterday";
+                    return DateFormats.YESTERDAY;
                 case -2:
                 case -3:
                 case -4:
                 case -5:
                 case -6:
                 case -7:
-                    return (-period) + " days ago";
+                    return String.format(DateFormats.X_DAYS_AGO, String.valueOf(-period));
                 default:
                     return convertToDateLMonthYear(dateValue, timeFlag);
             }
@@ -418,23 +418,23 @@ public class DateHumanizer {
             case 0:
                 return getTodayRelativeTimeString(getStringISODateToCalenderObject(dateValue));
             case 1:
-                return "Tomorrow";
+                return DateFormats.TOMORROW;
             case 2:
             case 3:
             case 4:
             case 5:
             case 6:
             case 7:
-                return "In " + dayDiff.intValue() + " days";
+                return String.format(DateFormats.IN_X_DAYS, String.valueOf(dayDiff.intValue()));
             case -1:
-                return "Yesterday";
+                return DateFormats.YESTERDAY;
             case -2:
             case -3:
             case -4:
             case -5:
             case -6:
             case -7:
-                return (-dayDiff.intValue()) + " days ago";
+                return String.format(DateFormats.X_DAYS_AGO, String.valueOf((-dayDiff.intValue())));
             default:
                 return getRelativeDateString(dayDiff.intValue(), dateValue);
         }
@@ -447,80 +447,106 @@ public class DateHumanizer {
         long mins = (mills / (1000 * 60)) % 60;
         if (hours >= 0 && mins >= 0) {
             if (hours > 12) {
-                return "Today";
+                return DateFormats.TODAY;
             }
             if (hours == 0) {
-                return mins == 0 ? "Just Now" : (mins == 1 ? (mins + " minute ago") : (mins + " minutes ago"));
+                return mins == 0 ? DateFormats.JUST_NOW :
+                        (mins == 1 ?
+                                DateFormats.X_MINUTE_AGO :
+                                String.format(DateFormats.X_MINUTES_AGO, String.valueOf(mins)));
             } else {
-                return hours == 1 ? (hours + " hour ago") : (hours + " hours ago");
+                return hours == 1 ? DateFormats.X_HOUR_AGO :
+                        String.format(DateFormats.X_HOURS_AGO, String.valueOf(hours));
             }
         } else {
-            return "Today";
+            return DateFormats.TODAY;
         }
     }
 
     private static String getRelativeDateString(Integer value, String dateValue) {
         int positiveValue = value < 0 ? -value : value;
-        if (positiveValue > 7 && positiveValue <= 14) {
-            if (value < 0) return "1 week ago";
-            else return "In one week";
-        } else if (positiveValue > 14 && positiveValue <= 21) {
-            if (value < 0) return "2 weeks ago";
-            else return "In 2 weeks";
-        } else if (positiveValue > 21 && positiveValue <= 30) {
-            if (value < 0) return "3 weeks ago";
-            else return "In 3 weeks";
-        } else if (positiveValue > 30 && positiveValue <= 60) {
-            if (value < 0) return "Last month";
-            else return "Next month";
-        } else if (positiveValue > 60 && positiveValue <= 90) {
-            if (value < 0) return "2 months ago";
-            else return "In 2 months";
-        } else if (positiveValue > 90 && positiveValue <= 120) {
-            if (value < 0) return "3 months ago";
-            else return "In 3 months";
-            //3 month
-        } else if (positiveValue > 120 && positiveValue <= 150) {
-            if (value < 0) return "4 months ago";
-            else return "In 4 months";
-            //4 month
-        } else if (positiveValue > 150 && positiveValue <= 180) {
-            if (value < 0) return "5 months ago";
-            else return "In 5 months";
-            //5 month
-        } else if (positiveValue > 180 && positiveValue <= 210) {
-            if (value < 0) return "6 months ago";
-            else return "In 6 months";
-            //6 month
-        } else if (positiveValue > 210 && positiveValue <= 240) {
-            if (value < 0) return "7 months ago";
-            else return "In 7 months";
-            //7 month
-        } else if (positiveValue > 240 && positiveValue <= 270) {
-            if (value < 0) return "8 months ago";
-            else return "In 8 months";
-            //8 month
-        } else if (positiveValue > 270 && positiveValue <= 300) {
-            if (value < 0) return "9 months ago";
-            else return "In 9 months";
-            //9 month
-        } else if (positiveValue > 300 && positiveValue <= 330) {
-            if (value < 0) return "10 months ago";
-            else return "In 10 months";
-            //10 month
-        } else if (positiveValue > 330 && positiveValue <= 360) {
-            //10 month
-            if (value < 0) return "11 months ago";
-            else return "In 11 months";
-        } else if (positiveValue > 360 && positiveValue <= 720) {
-            if (value < 0) return "Last Year";
-            else return "Next Year";
-        } else if (positiveValue > 720) {
-            if (value < 0) return "1+ years ago";
-            else return "In 1+ years";
-        } else {
-            return convertToDateLMonthYear(dateValue, TYPE_TIME_DISABLE);
+        int weekValue = positiveValue / 7;
+        int monthValue = positiveValue / 30;
+        int yearValue = positiveValue / 365;
+
+        if (weekValue < 5) {
+            if (weekValue == 1)
+                return value < 0 ? DateFormats.X_WEEK_AGO : DateFormats.IN_X_WEEK;
+            return String.format(value < 0 ? DateFormats.X_WEEKS_AGO : DateFormats.IN_X_WEEKS, String.valueOf(weekValue));
         }
+        if (monthValue < 12) {
+            if (monthValue == 1)
+                return value < 0 ? DateFormats.X_MONTH_AGO : DateFormats.IN_X_MONTH;
+            return String.format(value < 0 ? DateFormats.X_MONTHS_AGO : DateFormats.IN_X_MONTHS, String.valueOf(monthValue));
+        }
+
+        if (yearValue > 0) {
+            if (yearValue == 1)
+                return value < 0 ? DateFormats.LAST_YEAR : DateFormats.NEXT_YEAR;
+            return String.format(value < 0 ? DateFormats.X_YEARS_AGO : DateFormats.IN_X_YEARS, String.valueOf(yearValue));
+        }
+
+
+//        if (positiveValue > 7 && positiveValue <= 14) {
+//            if (value < 0) return "1 week ago";
+//            else return "In one week";
+//        } else if (positiveValue > 14 && positiveValue <= 21) {
+//            if (value < 0) return "2 weeks ago";
+//            else return "In 2 weeks";
+//        } else if (positiveValue > 21 && positiveValue <= 30) {
+//            if (value < 0) return "3 weeks ago";
+//            else return "In 3 weeks";
+//        } else if (positiveValue > 30 && positiveValue <= 60) {
+//            if (value < 0) return "Last month";
+//            else return "Next month";
+//        } else if (positiveValue > 60 && positiveValue <= 90) {
+//            if (value < 0) return "2 months ago";
+//            else return "In 2 months";
+//        } else if (positiveValue > 90 && positiveValue <= 120) {
+//            if (value < 0) return "3 months ago";
+//            else return "In 3 months";
+//            //3 month
+//        } else if (positiveValue > 120 && positiveValue <= 150) {
+//            if (value < 0) return "4 months ago";
+//            else return "In 4 months";
+//            //4 month
+//        } else if (positiveValue > 150 && positiveValue <= 180) {
+//            if (value < 0) return "5 months ago";
+//            else return "In 5 months";
+//            //5 month
+//        } else if (positiveValue > 180 && positiveValue <= 210) {
+//            if (value < 0) return "6 months ago";
+//            else return "In 6 months";
+//            //6 month
+//        } else if (positiveValue > 210 && positiveValue <= 240) {
+//            if (value < 0) return "7 months ago";
+//            else return "In 7 months";
+//            //7 month
+//        } else if (positiveValue > 240 && positiveValue <= 270) {
+//            if (value < 0) return "8 months ago";
+//            else return "In 8 months";
+//            //8 month
+//        } else if (positiveValue > 270 && positiveValue <= 300) {
+//            if (value < 0) return "9 months ago";
+//            else return "In 9 months";
+//            //9 month
+//        } else if (positiveValue > 300 && positiveValue <= 330) {
+//            if (value < 0) return "10 months ago";
+//            else return "In 10 months";
+//            //10 month
+//        } else if (positiveValue > 330 && positiveValue <= 360) {
+//            //10 month
+//            if (value < 0) return "11 months ago";
+//            else return "In 11 months";
+//        } else if (positiveValue > 360 && positiveValue <= 720) {
+//            if (value < 0) return "Last Year";
+//            else return "Next Year";
+//        } else if (positiveValue > 720) {
+//            if (value < 0) return "1+ years ago";
+//            else return "In 1+ years";
+//        } else {
+        return convertToDateLMonthYear(dateValue, TYPE_TIME_DISABLE);
+//        }
     }
 
     private static Calendar resetCalendarTime(Calendar sourceCalendar) {
