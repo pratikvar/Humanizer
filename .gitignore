@@ -36,3 +36,4 @@ local.properties
 build/
 /captures
 .externalNativeBuild
+/run_this_to_upload_on_bintrey.bat
