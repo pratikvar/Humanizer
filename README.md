@@ -1,5 +1,5 @@
 # Android Humanizer
-[ ![Download](https://api.bintray.com/packages/pratikvar/Humanizer/humanizer/images/download.svg?version=1.0.2) ](https://bintray.com/pratikvar/Humanizer/humanizer/1.0.2/link)
+[ ![Download](https://api.bintray.com/packages/pratikvar/Humanizer/humanizer/images/download.svg?version=1.1.1) ](https://bintray.com/pratikvar/Humanizer/humanizer/1.1.1/link)
 [![](https://jitpack.io/v/pratikvar/Humanizer.svg)](https://jitpack.io/#pratikvar/Humanizer)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Humanizer-blue.svg?style=flat)](https://android-arsenal.com/details/1/7834)
 
@@ -17,7 +17,7 @@ Using Pretty_Everything format you can show relevant date representation.
 ### Setting up the dependency
 The first step is to include Humanizer into your project, for example, as a Gradle compile dependency:
 ```
-implementation 'com.skybase.humanizer:humanizer:1.0.2'
+implementation 'com.skybase.humanizer:humanizer:1.1.1'
 ```
 ### Usage
 ```
