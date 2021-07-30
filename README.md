@@ -17,7 +17,7 @@ Using Pretty_Everything format you can show relevant date representation.
 ### Setting up the dependency
 The first step is to include Humanizer into your project, for example, as a Gradle compile dependency:
 ```
-implementation 'com.skybase.humanizer:humanizer:1.1.2'
+implementation("com.skybase.humanizer:humanizer:1.1.2")
 ```
 ### Usage
 ```
